@@ -17,7 +17,7 @@
       background: #0b0f1c;
       font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       color: #eef5ff;
-      line-height: 1.5;
+      line-height: 1.6;
       scroll-behavior: smooth;
     }
 
@@ -44,181 +44,225 @@
       background: #0f1a2b;
       border: 1px solid #2e4b6e;
       color: #b3dcff;
-      padding: 6px 16px;
+      padding: 8px 20px;
       border-radius: 40px;
-      font-size: 0.9rem;
-      font-weight: 500;
+      font-size: 0.95rem;
+      font-weight: 600;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       backdrop-filter: blur(4px);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+      50% { box-shadow: 0 0 0 12px rgba(37, 99, 235, 0); }
     }
 
     .btn {
-      padding: 14px 32px;
+      padding: 16px 36px;
       border-radius: 40px;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 1.05rem;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      transition: all 0.25s ease;
+      gap: 10px;
+      transition: all 0.3s ease;
       cursor: pointer;
       border: none;
-      background: transparent;
       color: white;
     }
 
     .btn-primary {
-      background: #2563eb;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
       color: white;
-      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
     }
 
     .btn-primary:hover {
-      background: #3b7bf6;
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.45);
-    }
-
-    .btn-outline {
-      border: 1px solid #3b4b66;
-      color: #d4e5ff;
-    }
-
-    .btn-outline:hover {
-      background: rgba(255,255,255,0.06);
-      border-color: #7aa9ff;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.5);
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 0;
+      padding: 24px 0;
     }
 
     .logo {
       font-family: 'Arial Black', 'Arial Bold', sans-serif;
-      font-size: 2.4rem;
+      font-size: 2.6rem;
       font-weight: 900;
-      color: white;
-      letter-spacing: 1px;
-      background: linear-gradient(180deg, #ffffff 0%, #d0e2ff 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #a0cfff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      letter-spacing: 2px;
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      gap: 50px;
       align-items: center;
-      margin: 30px 0 60px;
+      margin: 40px 0 70px;
     }
 
     .hero-image {
-      background: linear-gradient(135deg, #1e2b41, #0e1424);
-      border-radius: 32px;
-      padding: 20px;
+      background: linear-gradient(135deg, #1a2b45, #0c1424);
+      border-radius: 35px;
+      padding: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 20px 35px rgba(0,0,0,0.6);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
       border: 1px solid #2f3e58;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
 
     .hero-image i {
-      font-size: 7rem;
+      font-size: 8rem;
       color: #4b8bff;
-      opacity: 0.9;
-      filter: drop-shadow(0 0 12px #1e4b8f);
+      filter: drop-shadow(0 0 20px #1e4b8f);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 3D Effect Cards */
+    .card-3d {
+      background: linear-gradient(145deg, #111b2e, #0d1525);
+      border: 1px solid #253752;
+      border-radius: 24px;
+      padding: 32px 24px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .card-3d:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 50px rgba(37,99,235,0.2), 0 10px 30px rgba(0,0,0,0.5);
+      border-color: #4f8cff;
+    }
+
+    .card-3d::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(37,99,235,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      color: #5c9eff;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
     }
 
     .dashboard-preview {
-      background: #0c1422;
+      background: linear-gradient(145deg, #0c1422, #080f1a);
       border-radius: 28px;
-      padding: 30px;
-      margin: 40px 0;
+      padding: 35px;
+      margin: 50px 0;
       border: 1px solid #2a3850;
       text-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
     }
 
     .dashboard-img {
       max-width: 100%;
       border-radius: 20px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.7);
-      border: 1px solid #314b6e;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      border: 2px solid #314b6e;
+      transition: transform 0.3s;
     }
 
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 24px;
-      margin: 40px 0;
-    }
-
-    .feature-card {
-      background: rgba(18, 26, 41, 0.8);
-      backdrop-filter: blur(12px);
-      border: 1px solid #253752;
-      border-radius: 24px;
-      padding: 24px 20px;
-      transition: 0.2s;
-    }
-
-    .feature-card:hover {
-      border-color: #4f8cff;
-      background: rgba(22, 33, 54, 0.9);
-    }
-
-    .feature-icon {
-      font-size: 2.2rem;
-      color: #5c9eff;
-      margin-bottom: 16px;
+    .dashboard-img:hover {
+      transform: scale(1.02);
     }
 
     .waitlist-box {
-      background: rgba(12, 20, 35, 0.8);
-      backdrop-filter: blur(16px);
-      border: 1px solid #314a6b;
-      border-radius: 28px;
-      padding: 36px 28px;
-      max-width: 480px;
+      background: linear-gradient(145deg, #0f1a2b, #0a1220);
+      border: 2px solid #314a6b;
+      border-radius: 30px;
+      padding: 40px 32px;
+      max-width: 500px;
       margin: 0 auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
 
     input, select {
       width: 100%;
-      padding: 14px 18px;
-      margin: 10px 0;
-      background: #0a111f;
-      border: 1px solid #2c405b;
-      border-radius: 20px;
+      padding: 16px 20px;
+      margin: 12px 0;
+      background: #050a14;
+      border: 2px solid #1f3150;
+      border-radius: 16px;
       color: white;
       font-size: 1rem;
       outline: none;
+      transition: all 0.3s;
     }
 
     input:focus {
       border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59,130,246,0.3);
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.2);
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      margin: 50px 0 25px;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,201,255,0.05));
+      border-left: 4px solid #3b82f6;
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
     }
 
     footer {
       text-align: center;
-      padding: 32px 0;
+      padding: 40px 0;
       color: #8a9bb5;
       border-top: 1px solid #1f2a3c;
-      margin-top: 40px;
-    }
-
-    hr {
-      border-color: #1f2b3c;
-      margin: 32px 0;
+      margin-top: 60px;
     }
 
     @media (max-width: 768px) {
@@ -228,6 +272,9 @@
       .logo {
         font-size: 2rem;
       }
+      .section-title {
+        font-size: 1.8rem;
+      }
     }
   </style>
 </head>
@@ -235,110 +282,126 @@
   <div class="container">
     <header>
       <div class="logo">BHH</div>
-      <div class="badge-free"><i class="fas fa-shield-haltered"></i> FREE for now</div>
+      <div class="badge-free"><i class="fas fa-shield-alt"></i> FREE for now</div>
     </header>
 
     <!-- Hero -->
     <div class="hero-grid">
       <div>
-        <h1 style="font-size: 3rem; margin-bottom: 20px;">AI that breaks hackers' hearts <span class="text-light-blue">before they break your site</span></h1>
-        <p style="font-size: 1.25rem; margin-bottom: 28px; color: #ccdffc;">Simple cybersecurity monitoring for small brands, ecommerce & indie founders. No tech skills needed.</p>
+        <h1 style="font-size: 3.2rem; margin-bottom: 20px; line-height: 1.2;" id="heroTitle">AI that breaks hackers' hearts <span class="text-light-blue">before they break your site</span></h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px; color: #ccdffc; line-height: 1.7;" id="heroSubheadline">We monitor your website for hackers, scan for vulnerabilities weekly, and send you plain-English reports — so you can focus on growing your business instead of worrying about cyber threats.</p>
         <a href="#waitlist" class="btn btn-primary"><i class="fas fa-rocket"></i> Join Waitlist – Free Early Access</a>
-        <p style="margin-top: 16px; font-size: 0.9rem; color: #9bb5da;"><i class="fas fa-check-circle"></i> AI-powered · Weekly scans · Human-readable reports</p>
+        <p style="margin-top: 18px; font-size: 0.95rem; color: #9bb5da;"><i class="fas fa-check-circle"></i> AI-powered · Weekly scans · Human-readable reports</p>
       </div>
       <div class="hero-image">
         <i class="fas fa-shield-virus"></i>
       </div>
     </div>
 
-    <!-- Dashboard Preview (imaginary output) -->
+    <!-- Dashboard Preview -->
     <div class="dashboard-preview" id="dashboardPreview">
       <h2 style="margin-bottom: 20px;"><i class="fas fa-desktop text-light-blue"></i> Your future security dashboard</h2>
-      <img id="dashboardImage" src="https://placehold.co/800x400/0a111f/7cc9ff?text=BHH+Security+Dashboard+Preview" alt="BHH dashboard preview" class="dashboard-img" style="max-height: 400px; object-fit: contain;">
-      <p style="margin-top: 16px; color: #9fb7da;"><i class="fas fa-sync-alt"></i> Real-time threat map · vulnerability status · AI reports</p>
+      <img id="dashboardImage" src="https://placehold.co/800x400/0a111f/7cc9ff?text=BHH+Security+Dashboard+Preview" alt="BHH dashboard preview" class="dashboard-img" style="max-height: 450px; object-fit: contain;">
+      <p style="margin-top: 18px; color: #9fb7da; font-size: 1.1rem;"><i class="fas fa-sync-alt"></i> Real-time threat map · vulnerability status · AI reports</p>
     </div>
 
     <!-- What this is -->
-    <div style="margin: 60px 0 30px;">
-      <h2 style="font-size: 2rem;"><span class="text-light-blue">AI-Managed Cybersecurity</span> means you stay protected without being a security expert.</h2>
-      <p style="margin-top: 16px; max-width: 700px; color: #b8cef0;">We combine open-source tools (Wazuh, OpenVAS, pfSense) with an AI layer that monitors, explains threats, and sends alerts in plain language. Built for small businesses, online stores, and founders who want safety without complexity.</p>
+    <div style="margin: 60px 0 40px;">
+      <h2 class="section-title"><span class="text-light-blue">AI-Managed Cybersecurity</span> means you stay protected without being a security expert.</h2>
+      <p style="margin-top: 16px; max-width: 750px; color: #b8cef0; font-size: 1.1rem;">We combine open-source tools (Wazuh, OpenVAS, pfSense) with an AI layer that monitors, explains threats, and sends alerts in plain language. Built for small businesses, online stores, and founders who want safety without complexity.</p>
     </div>
 
-    <!-- Problem + Solution -->
-    <div style="display: flex; flex-wrap: wrap; gap: 30px; margin: 48px 0;">
-      <div style="flex: 1; min-width: 250px;">
-        <h3 style="color: #f87171;"><i class="fas fa-exclamation-triangle"></i> The Problem</h3>
-        <ul style="list-style: none; margin-top: 16px; color: #d1d9e8;">
-          <li style="margin-bottom: 12px;"><i class="fas fa-times-circle" style="color: #f87171;"></i> “You don’t know if your website is vulnerable”</li>
-          <li style="margin-bottom: 12px;"><i class="fas fa-times-circle" style="color: #f87171;"></i> “No time to monitor threats 24/7”</li>
-          <li style="margin-bottom: 12px;"><i class="fas fa-times-circle" style="color: #f87171;"></i> “Cybersecurity tools are complex and expensive”</li>
+    <!-- Problem + Solution (3D Cards) -->
+    <div style="display: flex; flex-wrap: wrap; gap: 30px; margin: 50px 0;">
+      <div style="flex: 1; min-width: 280px;" class="card-3d">
+        <h3 style="color: #f87171; font-size: 1.5rem;"><i class="fas fa-exclamation-triangle"></i> The Problem</h3>
+        <ul style="list-style: none; margin-top: 20px; color: #d1d9e8; font-size: 1.05rem;">
+          <li style="margin-bottom: 16px;"><i class="fas fa-times-circle" style="color: #f87171;"></i> You don't know if your website is vulnerable</li>
+          <li style="margin-bottom: 16px;"><i class="fas fa-times-circle" style="color: #f87171;"></i> No time to monitor threats 24/7</li>
+          <li style="margin-bottom: 16px;"><i class="fas fa-times-circle" style="color: #f87171;"></i> Cybersecurity tools are complex and expensive</li>
         </ul>
       </div>
-      <div style="flex: 1; min-width: 250px;">
-        <h3 style="color: #60a5fa;"><i class="fas fa-lightbulb"></i> Our Solution</h3>
-        <ul style="list-style: none; margin-top: 16px; color: #d1d9e8;">
-          <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #60a5fa;"></i> AI monitoring + vulnerability scanning</li>
-          <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #60a5fa;"></i> Simple, human-readable monthly reports</li>
-          <li style="margin-bottom: 12px;"><i class="fas fa-check-circle" style="color: #60a5fa;"></i> Actionable steps, no jargon</li>
+      <div style="flex: 1; min-width: 280px;" class="card-3d">
+        <h3 style="color: #60a5fa; font-size: 1.5rem;"><i class="fas fa-lightbulb"></i> Our Solution</h3>
+        <ul style="list-style: none; margin-top: 20px; color: #d1d9e8; font-size: 1.05rem;">
+          <li style="margin-bottom: 16px;"><i class="fas fa-check-circle" style="color: #60a5fa;"></i> AI monitoring + vulnerability scanning</li>
+          <li style="margin-bottom: 16px;"><i class="fas fa-check-circle" style="color: #60a5fa;"></i> Simple, human-readable monthly reports</li>
+          <li style="margin-bottom: 16px;"><i class="fas fa-check-circle" style="color: #60a5fa;"></i> Actionable steps, no jargon</li>
         </ul>
       </div>
     </div>
 
-    <!-- Features grid -->
-    <h2 style="font-size: 2rem; margin-top: 40px;">Core security, <span class="text-light-blue">simplified</span></h2>
+    <!-- Features grid with 3D effect -->
+    <h2 class="section-title">Core security, <span class="text-light-blue">simplified</span></h2>
     <div class="card-grid">
-      <div class="feature-card"><i class="fas fa-eye feature-icon"></i><h3>Real-time threat detection</h3><p>Basic alerts when something looks suspicious.</p></div>
-      <div class="feature-card"><i class="fas fa-file-alt feature-icon"></i><h3>Automated security reports</h3><p>AI-generated summaries, no tech headache.</p></div>
-      <div class="feature-card"><i class="fas fa-brain feature-icon"></i><h3>AI-powered risk analysis</h3><p>ChatGPT + Google AI Studio layer.</p></div>
-      <div class="feature-card"><i class="fas fa-search feature-icon"></i><h3>Website vulnerability scans</h3><p>Weekly OpenVAS checks.</p></div>
-      <div class="feature-card"><i class="fab fa-whatsapp feature-icon"></i><h3>WhatsApp/Email alerts</h3><p>Phishing protection training + alerts.</p></div>
-      <div class="feature-card"><i class="fas fa-user-graduate feature-icon"></i><h3>Beginner-friendly insights</h3><p>Explanations you actually understand.</p></div>
+      <div class="card-3d"><i class="fas fa-eye feature-icon"></i><h3>Real-time threat detection</h3><p style="color: #a0bbdb;">Basic alerts when something looks suspicious.</p></div>
+      <div class="card-3d"><i class="fas fa-file-alt feature-icon"></i><h3>Automated security reports</h3><p style="color: #a0bbdb;">AI-generated summaries, no tech headache.</p></div>
+      <div class="card-3d"><i class="fas fa-brain feature-icon"></i><h3>AI-powered risk analysis</h3><p style="color: #a0bbdb;">ChatGPT + Google AI Studio layer.</p></div>
+      <div class="card-3d"><i class="fas fa-search feature-icon"></i><h3>Website vulnerability scans</h3><p style="color: #a0bbdb;">Weekly OpenVAS checks.</p></div>
+      <div class="card-3d"><i class="fab fa-whatsapp feature-icon"></i><h3>WhatsApp/Email alerts</h3><p style="color: #a0bbdb;">Phishing protection training + alerts.</p></div>
+      <div class="card-3d"><i class="fas fa-user-graduate feature-icon"></i><h3>Beginner-friendly insights</h3><p style="color: #a0bbdb;">Explanations you actually understand.</p></div>
     </div>
 
     <!-- How it works -->
-    <h2 style="font-size: 2rem; margin: 48px 0 24px;">How it works</h2>
-    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between;">
-      <div style="flex:1; min-width:130px;"><i class="fas fa-plug" style="font-size:2rem; color:#4f8cff;"></i><h4>1. Connect</h4><p>Website or small app</p></div>
-      <div style="flex:1; min-width:130px;"><i class="fas fa-sync-alt" style="font-size:2rem; color:#4f8cff;"></i><h4>2. Scan & Monitor</h4><p>Wazuh + OpenVAS</p></div>
-      <div style="flex:1; min-width:130px;"><i class="fas fa-microchip" style="font-size:2rem; color:#4f8cff;"></i><h4>3. AI analyzes</h4><p>Threat meaning</p></div>
-      <div style="flex:1; min-width:130px;"><i class="fas fa-envelope-open-text" style="font-size:2rem; color:#4f8cff;"></i><h4>4. Clear reports</h4><p>Actions delivered</p></div>
+    <h2 class="section-title">How it works</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 25px; justify-content: space-between; text-align: center;">
+      <div style="flex:1; min-width:140px;" class="card-3d">
+        <i class="fas fa-plug" style="font-size:2.5rem; color:#4f8cff;"></i>
+        <h4 style="margin-top: 12px;">1. Connect</h4>
+        <p style="color: #8fa3c0;">Website or small app</p>
+      </div>
+      <div style="flex:1; min-width:140px;" class="card-3d">
+        <i class="fas fa-sync-alt" style="font-size:2.5rem; color:#4f8cff;"></i>
+        <h4 style="margin-top: 12px;">2. Scan & Monitor</h4>
+        <p style="color: #8fa3c0;">Wazuh + OpenVAS</p>
+      </div>
+      <div style="flex:1; min-width:140px;" class="card-3d">
+        <i class="fas fa-microchip" style="font-size:2.5rem; color:#4f8cff;"></i>
+        <h4 style="margin-top: 12px;">3. AI analyzes</h4>
+        <p style="color: #8fa3c0;">Threat meaning</p>
+      </div>
+      <div style="flex:1; min-width:140px;" class="card-3d">
+        <i class="fas fa-envelope-open-text" style="font-size:2.5rem; color:#4f8cff;"></i>
+        <h4 style="margin-top: 12px;">4. Clear reports</h4>
+        <p style="color: #8fa3c0;">Actions delivered</p>
+      </div>
     </div>
 
     <!-- Why choose us -->
-    <div style="margin: 50px 0; background: #0c1422; border-radius: 28px; padding: 30px;">
-      <h3><i class="fas fa-hand-holding-heart text-light-blue"></i> Why BHH?</h3>
-      <div style="display: flex; flex-wrap: wrap; gap: 24px; margin-top: 20px;">
-        <div><i class="fas fa-store"></i> <strong>Built for small businesses</strong></div>
-        <div><i class="fas fa-user-check"></i> <strong>No technical knowledge required</strong></div>
-        <div><i class="fas fa-tag"></i> <strong>Starting low cost (free now)</strong></div>
-        <div><i class="fas fa-robot"></i> <strong>AI + human-backed insights</strong></div>
+    <div style="margin: 60px 0;" class="card-3d">
+      <h3 style="font-size: 1.8rem;"><i class="fas fa-hand-holding-heart text-light-blue"></i> Why BHH?</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 25px; margin-top: 25px; font-size: 1.1rem;">
+        <div><i class="fas fa-store" style="color: #60a5fa;"></i> <strong>Built for small businesses</strong></div>
+        <div><i class="fas fa-user-check" style="color: #60a5fa;"></i> <strong>No technical knowledge required</strong></div>
+        <div><i class="fas fa-tag" style="color: #60a5fa;"></i> <strong>Starting low cost (free now)</strong></div>
+        <div><i class="fas fa-robot" style="color: #60a5fa;"></i> <strong>AI + human-backed insights</strong></div>
       </div>
     </div>
 
     <!-- Waitlist Section -->
-    <div id="waitlist" style="text-align: center; margin: 50px 0;">
-      <h2 style="font-size: 2.2rem;">Get Early Access</h2>
-      <p style="color: #b0caf0;">Founding users get priority benefits & free extended monitoring.</p>
+    <div id="waitlist" style="text-align: center; margin: 60px 0;">
+      <h2 style="font-size: 2.5rem;">Get Early Access</h2>
+      <p style="color: #b0caf0; font-size: 1.1rem; margin-bottom: 30px;">Founding users get priority benefits & free extended monitoring.</p>
       <div class="waitlist-box">
         <form id="waitlistForm">
           <input type="text" id="name" placeholder="Your name" required>
           <input type="email" id="email" placeholder="Email address" required>
           <input type="text" id="business" placeholder="Business type (optional)">
-          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:12px;"><i class="fas fa-paper-plane"></i> Join Waitlist</button>
+          <button type="submit" class="btn btn-primary" style="width:100%; margin-top:16px;"><i class="fas fa-paper-plane"></i> Join Waitlist</button>
         </form>
-        <p style="font-size:0.8rem; margin-top:12px; color:#7f95b5;"><i class="fas fa-lock"></i> Limited early access. No spam.</p>
-        <div id="formMessage" style="margin-top:12px; color:#9ac8ff;"></div>
+        <p style="font-size:0.85rem; margin-top:14px; color:#7f95b5;"><i class="fas fa-lock"></i> Limited early access. No spam.</p>
+        <div id="formMessage" style="margin-top:14px; color:#9ac8ff; font-weight: 600;"></div>
       </div>
     </div>
 
     <footer>
-      <p>© BHH — Break Hackers Heart · AI-managed Cybersecurity</p>
-      <p style="font-size:0.8rem;">About · Contact · Privacy</p>
-      <p style="margin-top: 8px;"><a href="admin.html" style="color: #5f7ea0; text-decoration: none;">Admin access</a></p>
+      <p style="font-size: 1.1rem;">© BHH — Break Hackers Heart · AI-managed Cybersecurity</p>
+      <p style="font-size:0.9rem; margin-top: 8px;">About · Contact · Privacy</p>
+      <p style="margin-top: 12px;"><a href="admin.html" style="color: #5f7ea0; text-decoration: none;">🔐 Admin Panel</a></p>
     </footer>
   </div>
 
-  <!-- Supabase integration for waitlist -->
+  <!-- Supabase Integration -->
   <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
@@ -347,6 +410,24 @@
     
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     
+    // Load saved content from localStorage (set by admin panel)
+    function loadSavedContent() {
+      const savedHero1 = localStorage.getItem('bhh_hero_title1');
+      const savedHeroSub = localStorage.getItem('bhh_hero_sub');
+      const savedImage = localStorage.getItem('bhh_dashboard_image');
+      
+      if (savedHero1) {
+        document.getElementById('heroTitle').innerHTML = savedHero1;
+      }
+      if (savedHeroSub) {
+        document.getElementById('heroSubheadline').textContent = savedHeroSub;
+      }
+      if (savedImage) {
+        document.getElementById('dashboardImage').src = savedImage;
+      }
+    }
+    
+    // Waitlist form submission
     const form = document.getElementById('waitlistForm');
     const formMsg = document.getElementById('formMessage');
 
@@ -357,27 +438,46 @@
       const business = document.getElementById('business').value.trim();
 
       if (!name || !email) {
-        formMsg.textContent = 'Please fill name and email.';
+        formMsg.textContent = '❌ Please fill in your name and email.';
+        formMsg.style.color = '#f87171';
         return;
       }
 
-      const { error } = await supabase
+      formMsg.textContent = '⏳ Saving...';
+      formMsg.style.color = '#9ac8ff';
+
+      const { data, error } = await supabase
         .from('waitlist')
-        .insert([{ name, email, business_type: business || null }]);
+        .insert([{ 
+          name: name, 
+          email: email, 
+          business_type: business || null 
+        }]);
 
       if (error) {
-        formMsg.textContent = 'Something went wrong. Maybe email already registered.';
+        console.error('Supabase error:', error);
+        if (error.code === '23505') {
+          formMsg.textContent = '📧 This email is already on the waitlist!';
+        } else {
+          formMsg.textContent = '❌ Error saving. Please try again.';
+        }
+        formMsg.style.color = '#f87171';
       } else {
-        formMsg.textContent = '✅ You’re on the list! Early access coming soon.';
+        formMsg.textContent = '✅ You\'re on the list! Early access coming soon.';
+        formMsg.style.color = '#4ade80';
         form.reset();
       }
     });
 
-    // Load dashboard image from localStorage if set by admin
-    const savedImage = localStorage.getItem('bhh_dashboard_image');
-    if (savedImage) {
-      document.getElementById('dashboardImage').src = savedImage;
-    }
+    // Load saved content on page load
+    loadSavedContent();
+    
+    // Listen for storage changes (when admin updates content)
+    window.addEventListener('storage', (e) => {
+      if (e.key && e.key.startsWith('bhh_')) {
+        loadSavedContent();
+      }
+    });
   </script>
 </body>
 </html>
