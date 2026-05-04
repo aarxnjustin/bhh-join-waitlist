@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>BHH Admin Panel · Manage Content</title>
+  <title>BHH Admin Panel · Content Manager</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
@@ -11,289 +11,239 @@
       padding: 0;
       box-sizing: border-box;
     }
+    
     body {
       background: #0a0f1a;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       color: #eef5ff;
-      padding: 24px;
+      padding: 20px;
     }
+    
     .admin-container {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
     }
+    
     .admin-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 32px;
+      margin-bottom: 35px;
       flex-wrap: wrap;
+      gap: 15px;
     }
+    
     .logo {
       font-family: 'Arial Black', 'Arial Bold', sans-serif;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       background: linear-gradient(180deg, #ffffff 0%, #b0d4ff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
     }
+    
     .card {
-      background: #111b2b;
-      border: 1px solid #253752;
+      background: linear-gradient(145deg, #0f1a2b, #0a1220);
+      border: 2px solid #253752;
       border-radius: 24px;
-      padding: 24px;
-      margin-bottom: 24px;
+      padding: 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
+    
+    .card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
     .btn {
-      padding: 12px 24px;
+      padding: 13px 28px;
       border-radius: 30px;
       font-weight: 600;
       border: none;
       cursor: pointer;
-      background: #2563eb;
-      color: white;
+      font-size: 1rem;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      transition: all 0.3s;
     }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37,99,235,0.4);
+    }
+    
     .btn-outline {
       background: transparent;
-      border: 1px solid #3f5680;
+      border: 2px solid #3f5680;
       color: #ccddff;
     }
-    .btn-danger {
-      background: #b91c1c;
+    
+    .btn-outline:hover {
+      border-color: #60a5fa;
+      background: rgba(37,99,235,0.1);
     }
+    
+    .btn-danger {
+      background: #dc2626;
+      color: white;
+    }
+    
+    .btn-success {
+      background: #059669;
+      color: white;
+    }
+    
     input, textarea {
       width: 100%;
-      padding: 12px 16px;
-      margin: 8px 0 16px;
+      padding: 14px 18px;
+      margin: 10px 0 18px;
       background: #020617;
-      border: 1px solid #2c405b;
-      border-radius: 16px;
+      border: 2px solid #1f3150;
+      border-radius: 14px;
       color: white;
       font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.3s;
     }
+    
+    input:focus, textarea:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.2);
+      outline: none;
+    }
+    
     .subscriber-list {
-      max-height: 300px;
+      max-height: 400px;
       overflow-y: auto;
       background: #030712;
-      padding: 12px;
+      padding: 16px;
       border-radius: 16px;
+      border: 1px solid #1f3150;
     }
+    
+    .subscriber-item {
+      padding: 12px;
+      border-bottom: 1px solid #1e2b40;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 24px;
     }
-    @media (max-width: 700px) {
+    
+    .preview-thumb {
+      max-width: 100%;
+      border-radius: 16px;
+      margin-top: 12px;
+      border: 2px solid #314b6e;
+    }
+    
+    .status-badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .status-success {
+      background: rgba(5,150,105,0.2);
+      color: #34d399;
+    }
+    
+    @media (max-width: 768px) {
       .grid-2 {
         grid-template-columns: 1fr;
       }
     }
-    .preview-thumb {
-      max-width: 200px;
-      border-radius: 16px;
-      margin-top: 10px;
-      border: 1px solid #3b4f6e;
-    }
   </style>
 </head>
 <body>
-  <div class="admin-container" id="app">
-    <!-- Login screen -->
+  <div class="admin-container">
+    <!-- Login Screen -->
     <div id="loginScreen">
-      <div class="card" style="max-width: 400px; margin: 80px auto; text-align: center;">
-        <div class="logo" style="margin-bottom: 20px;">BHH</div>
+      <div class="card" style="max-width: 420px; margin: 100px auto; text-align: center;">
+        <div class="logo" style="margin-bottom: 24px;">BHH</div>
         <h3><i class="fas fa-lock"></i> Admin Access</h3>
-        <input type="password" id="passwordInput" placeholder="Enter admin password" style="margin:16px 0;">
-        <button class="btn" id="loginBtn" style="width:100%;">Unlock Panel</button>
-        <p style="margin-top:12px; font-size:0.8rem; color:#7f95b5;">Default: admin1234</p>
+        <p style="color: #8a9bb5; margin: 12px 0;">Enter password to manage content</p>
+        <input type="password" id="passwordInput" placeholder="Password" style="margin:16px 0;">
+        <button class="btn btn-primary" id="loginBtn" style="width:100%;">🔓 Unlock Panel</button>
+        <p style="margin-top:14px; font-size:0.85rem; color:#5f7392;">Default password: admin1234</p>
       </div>
     </div>
 
-    <!-- Main admin panel (hidden initially) -->
+    <!-- Admin Dashboard (hidden by default) -->
     <div id="adminDashboard" style="display: none;">
       <div class="admin-header">
         <div class="logo">BHH <span style="font-size:1rem; color:#7cc9ff;">admin</span></div>
-        <button class="btn btn-outline" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        <div style="display: flex; gap: 12px;">
+          <a href="index.html" class="btn btn-outline" target="_blank"><i class="fas fa-external-link-alt"></i> View Site</a>
+          <button class="btn btn-danger" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
       </div>
 
-      <!-- Waitlist subscribers -->
+      <!-- Stats Overview -->
+      <div class="card">
+        <h3><i class="fas fa-chart-bar"></i> Quick Stats</h3>
+        <div style="display: flex; gap: 30px; flex-wrap: wrap;">
+          <div><strong style="font-size: 2rem; color: #60a5fa;" id="totalSubs">0</strong><br>Waitlist Signups</div>
+          <div><strong style="font-size: 2rem; color: #60a5fa;" id="todaySubs">0</strong><br>Today</div>
+        </div>
+      </div>
+
+      <!-- Waitlist Management -->
       <div class="card">
         <h3><i class="fas fa-users"></i> Waitlist Subscribers</h3>
-        <div id="subscriberCount" style="margin: 8px 0;">Loading...</div>
-        <div class="subscriber-list" id="subscriberList">Loading subscribers...</div>
-        <button class="btn btn-outline" id="refreshSubs" style="margin-top:12px;"><i class="fas fa-sync-alt"></i> Refresh</button>
+        <button class="btn btn-outline" id="refreshSubs" style="margin-bottom: 16px;"><i class="fas fa-sync-alt"></i> Refresh List</button>
+        <button class="btn btn-outline" id="exportCSV" style="margin-bottom: 16px; margin-left: 10px;"><i class="fas fa-download"></i> Export CSV</button>
+        <div class="subscriber-list" id="subscriberList">
+          <p style="color: #5f7392;">Loading subscribers...</p>
+        </div>
       </div>
 
       <div class="grid-2">
-        <!-- Dashboard image control -->
+        <!-- Dashboard Image Control -->
         <div class="card">
           <h3><i class="fas fa-image"></i> Dashboard Preview Image</h3>
-          <p style="font-size:0.85rem; color:#a0bbdb;">Paste a Cloudinary or any image URL to show on landing page.</p>
-          <input type="url" id="imageUrlInput" placeholder="https://res.cloudinary.com/.../dashboard.png">
-          <button class="btn" id="updateImageBtn"><i class="fas fa-save"></i> Update Preview</button>
-          <div>
-            <img id="currentPreview" src="https://placehold.co/400x200/0a111f/7cc9ff?text=No+image+set" alt="current preview" class="preview-thumb" style="margin-top:12px;">
+          <p style="color: #8fa3c0; font-size: 0.9rem;">Paste a Cloudinary or any image URL</p>
+          <input type="url" id="imageUrlInput" placeholder="https://res.cloudinary.com/your-image.png">
+          <button class="btn btn-primary" id="updateImageBtn"><i class="fas fa-save"></i> Update Preview Image</button>
+          <div style="margin-top: 16px;">
+            <p style="font-size: 0.85rem; color: #8fa3c0;">Current preview:</p>
+            <img id="currentPreview" src="https://placehold.co/400x200/0a111f/7cc9ff?text=No+image+set" alt="Current preview" class="preview-thumb">
           </div>
         </div>
 
-        <!-- Editable text boxes (simple) -->
+        <!-- Hero Text Editor -->
         <div class="card">
-          <h3><i class="fas fa-pen"></i> Edit Hero Text</h3>
-          <label>Main headline (first part)</label>
-          <input type="text" id="heroTitle1" placeholder="AI that breaks hackers' hearts">
-          <label>Subheadline</label>
-          <textarea id="heroSub" rows="2" placeholder="Simple cybersecurity monitoring..."></textarea>
-          <button class="btn" id="saveTextBtn"><i class="fas fa-check"></i> Save Texts</button>
-          <p style="font-size:0.8rem; margin-top:8px; color:#6b85a8;">Changes reflect on landing page after save.</p>
+          <h3><i class="fas fa-pen"></i> Edit Hero Section</h3>
+          <label style="color: #b0caf0;">Main Headline</label>
+          <textarea id="heroTitle1" rows="2" placeholder="AI that breaks hackers' hearts <span>before they break your site</span>">AI that breaks hackers' hearts <span class="text-light-blue">before they break your site</span></textarea>
+          
+          <label style="color: #b0caf0;">Subheadline</label>
+          <textarea id="heroSub" rows="3" placeholder="We monitor your website for hackers...">We monitor your website for hackers, scan for vulnerabilities weekly, and send you plain-English reports — so you can focus on growing your business instead of worrying about cyber threats.</textarea>
+          
+          <button class="btn btn-success" id="saveTextBtn"><i class="fas fa-check"></i> Save & Update Landing Page</button>
         </div>
       </div>
 
-      <!-- Additional editable boxes (features description) -->
+      <!-- Additional Content Editor -->
       <div class="card">
-        <h3><i class="fas fa-cubes"></i> Feature Box Customization</h3>
-        <p style="font-size:0.85rem;">You can later add more boxes; for now edit these sample fields.</p>
-        <div style="display: flex; gap:12px; flex-wrap: wrap;">
-          <input type="text" id="feature1Title" placeholder="Feature 1 title" style="flex:1;">
-          <input type="text" id="feature2Title" placeholder="Feature 2 title" style="flex:1;">
-        </div>
-        <button class="btn btn-outline" id="saveFeatureSample" style="margin-top:12px;">Save sample feature titles</button>
-      </div>
-
-      <p style="color:#5f7392; margin-top:24px;">Back to <a href="index.html" style="color:#7cc9ff;">landing page</a></p>
-    </div>
-  </div>
-
-  <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
-    const SUPABASE_URL = "https://ifgalrhiytxjzoqdccvu.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlmZ2FscmhpeXR4anpvcWRjY3Z1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MzE0OTksImV4cCI6MjA5MzQwNzQ5OX0.Ops8Rv_BoecZUV2vAjmIeGcZqdqNFG9nVeIoFU6ePRQ";
-    const ADMIN_PASSWORD = "admin1234";
-
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    // DOM elements
-    const loginScreen = document.getElementById('loginScreen');
-    const adminDashboard = document.getElementById('adminDashboard');
-    const passwordInput = document.getElementById('passwordInput');
-    const loginBtn = document.getElementById('loginBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
-    
-    const subscriberList = document.getElementById('subscriberList');
-    const subscriberCount = document.getElementById('subscriberCount');
-    const refreshSubs = document.getElementById('refreshSubs');
-    
-    const imageUrlInput = document.getElementById('imageUrlInput');
-    const updateImageBtn = document.getElementById('updateImageBtn');
-    const currentPreview = document.getElementById('currentPreview');
-    
-    const heroTitle1 = document.getElementById('heroTitle1');
-    const heroSub = document.getElementById('heroSub');
-    const saveTextBtn = document.getElementById('saveTextBtn');
-    
-    const feature1Title = document.getElementById('feature1Title');
-    const feature2Title = document.getElementById('feature2Title');
-    const saveFeatureSample = document.getElementById('saveFeatureSample');
-
-    // Load subscribers
-    async function loadSubscribers() {
-      const { data, error, count } = await supabase
-        .from('waitlist')
-        .select('*', { count: 'exact' })
-        .order('created_at', { ascending: false });
-      
-      if (error) {
-        subscriberList.innerHTML = 'Error loading subscribers.';
-        return;
-      }
-      subscriberCount.textContent = `Total: ${count || 0} subscribers`;
-      if (data && data.length > 0) {
-        subscriberList.innerHTML = data.map(entry => 
-          `<div style="padding:8px 0; border-bottom:1px solid #1e2b40;">📧 ${entry.email} · ${entry.name || 'no name'} ${entry.business_type ? '· '+entry.business_type : ''}</div>`
-        ).join('');
-      } else {
-        subscriberList.innerHTML = '<p>No subscribers yet.</p>';
-      }
-    }
-
-    // Load saved content from localStorage
-    function loadSavedContent() {
-      const savedHero1 = localStorage.getItem('bhh_hero_title1');
-      const savedHeroSub = localStorage.getItem('bhh_hero_sub');
-      const savedFeature1 = localStorage.getItem('bhh_feature1');
-      const savedFeature2 = localStorage.getItem('bhh_feature2');
-      const savedImage = localStorage.getItem('bhh_dashboard_image');
-      
-      if (savedHero1) heroTitle1.value = savedHero1;
-      if (savedHeroSub) heroSub.value = savedHeroSub;
-      if (savedFeature1) feature1Title.value = savedFeature1;
-      if (savedFeature2) feature2Title.value = savedFeature2;
-      if (savedImage) {
-        imageUrlInput.value = savedImage;
-        currentPreview.src = savedImage;
-      }
-    }
-
-    // Login
-    loginBtn.addEventListener('click', () => {
-      if (passwordInput.value === ADMIN_PASSWORD) {
-        loginScreen.style.display = 'none';
-        adminDashboard.style.display = 'block';
-        localStorage.setItem('bhh_admin_auth', 'true');
-        loadSubscribers();
-        loadSavedContent();
-      } else {
-        alert('Incorrect password');
-      }
-    });
-
-    // Logout
-    logoutBtn.addEventListener('click', () => {
-      localStorage.removeItem('bhh_admin_auth');
-      adminDashboard.style.display = 'none';
-      loginScreen.style.display = 'block';
-      passwordInput.value = '';
-    });
-
-    // Check session
-    if (localStorage.getItem('bhh_admin_auth') === 'true') {
-      loginScreen.style.display = 'none';
-      adminDashboard.style.display = 'block';
-      loadSubscribers();
-      loadSavedContent();
-    }
-
-    // Refresh subscribers
-    refreshSubs.addEventListener('click', loadSubscribers);
-
-    // Update dashboard image
-    updateImageBtn.addEventListener('click', () => {
-      const url = imageUrlInput.value.trim();
-      if (url) {
-        localStorage.setItem('bhh_dashboard_image', url);
-        currentPreview.src = url;
-        alert('Dashboard image updated! Landing page will show new image.');
-      } else {
-        alert('Please enter a valid image URL.');
-      }
-    });
-
-    // Save hero texts
-    saveTextBtn.addEventListener('click', () => {
-      localStorage.setItem('bhh_hero_title1', heroTitle1.value);
-      localStorage.setItem('bhh_hero_sub', heroSub.value);
-      alert('Hero texts saved. (Landing page can read these values)');
-    });
-
-    // Save feature sample
-    saveFeatureSample.addEventListener('click', () => {
-      localStorage.setItem('bhh_feature1', feature1Title.value);
-      localStorage.setItem('bhh_feature2', feature2Title.value);
-      alert('Feature titles saved.');
-    });
-
-    // Also update landing page dynamic texts if we include script on index (optional)
-  </script>
-</body>
-</html>
+        <h3><i class="fas fa-puzzle-piece"></i> Additional Content</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+          <div>
+            <label style="color: #b0caf0;">Feature Box 1 Title</label>
+            <input
