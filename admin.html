@@ -33,7 +33,7 @@
       gap: 15px;
     }
     
-    .logo {
+    .logo-text {
       font-family: 'Arial Black', 'Arial Bold', sans-serif;
       font-size: 2.4rem;
       background: linear-gradient(180deg, #ffffff 0%, #b0d4ff 100%);
@@ -93,13 +93,13 @@
       background: rgba(37,99,235,0.1);
     }
     
-    .btn-danger {
-      background: #dc2626;
+    .btn-success {
+      background: #059669;
       color: white;
     }
     
-    .btn-success {
-      background: #059669;
+    .btn-danger {
+      background: #dc2626;
       color: white;
     }
     
@@ -176,7 +176,7 @@
     <!-- Login Screen -->
     <div id="loginScreen">
       <div class="card" style="max-width: 420px; margin: 100px auto; text-align: center;">
-        <div class="logo" style="margin-bottom: 24px;">BHH</div>
+        <div class="logo-text" style="margin-bottom: 24px;">BHH</div>
         <h3><i class="fas fa-lock"></i> Admin Access</h3>
         <p style="color: #8a9bb5; margin: 12px 0;">Enter password to manage content</p>
         <input type="password" id="passwordInput" placeholder="Password" style="margin:16px 0;">
@@ -185,10 +185,10 @@
       </div>
     </div>
 
-    <!-- Admin Dashboard (hidden by default) -->
+    <!-- Admin Dashboard -->
     <div id="adminDashboard" style="display: none;">
       <div class="admin-header">
-        <div class="logo">BHH <span style="font-size:1rem; color:#7cc9ff;">admin</span></div>
+        <div class="logo-text">BHH <span style="font-size:1rem; color:#7cc9ff;">admin</span></div>
         <div style="display: flex; gap: 12px;">
           <a href="index.html" class="btn btn-outline" target="_blank"><i class="fas fa-external-link-alt"></i> View Site</a>
           <button class="btn btn-danger" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
@@ -215,35 +215,22 @@
       </div>
 
       <div class="grid-2">
-        <!-- Dashboard Image Control -->
+        <!-- Hero Logo Image Control -->
         <div class="card">
-          <h3><i class="fas fa-image"></i> Dashboard Preview Image</h3>
-          <p style="color: #8fa3c0; font-size: 0.9rem;">Paste a Cloudinary or any image URL</p>
-          <input type="url" id="imageUrlInput" placeholder="https://res.cloudinary.com/your-image.png">
-          <button class="btn btn-primary" id="updateImageBtn"><i class="fas fa-save"></i> Update Preview Image</button>
+          <h3><i class="fas fa-image"></i> Hero Logo Image</h3>
+          <p style="color: #8fa3c0; font-size: 0.9rem;">Add your BHH logo (PNG recommended)</p>
+          <input type="url" id="heroLogoUrl" placeholder="https://example.com/your-logo.png">
+          <button class="btn btn-primary" id="updateLogoBtn"><i class="fas fa-upload"></i> Update Hero Logo</button>
           <div style="margin-top: 16px;">
-            <p style="font-size: 0.85rem; color: #8fa3c0;">Current preview:</p>
-            <img id="currentPreview" src="https://placehold.co/400x200/0a111f/7cc9ff?text=No+image+set" alt="Current preview" class="preview-thumb">
+            <p style="font-size: 0.85rem; color: #8fa3c0;">Current logo preview:</p>
+            <img id="currentLogoPreview" src="" alt="No logo set" class="preview-thumb" style="max-height: 150px; object-fit: contain; background: #0a0f1a;">
+            <p style="font-size: 0.8rem; color: #6b7d95; margin-top: 8px;">Leave empty to use default shield icon</p>
           </div>
         </div>
 
-        <!-- Hero Text Editor -->
+        <!-- Dashboard Image Control -->
         <div class="card">
-          <h3><i class="fas fa-pen"></i> Edit Hero Section</h3>
-          <label style="color: #b0caf0;">Main Headline</label>
-          <textarea id="heroTitle1" rows="2" placeholder="AI that breaks hackers' hearts <span>before they break your site</span>">AI that breaks hackers' hearts <span class="text-light-blue">before they break your site</span></textarea>
-          
-          <label style="color: #b0caf0;">Subheadline</label>
-          <textarea id="heroSub" rows="3" placeholder="We monitor your website for hackers...">We monitor your website for hackers, scan for vulnerabilities weekly, and send you plain-English reports — so you can focus on growing your business instead of worrying about cyber threats.</textarea>
-          
-          <button class="btn btn-success" id="saveTextBtn"><i class="fas fa-check"></i> Save & Update Landing Page</button>
-        </div>
-      </div>
-
-      <!-- Additional Content Editor -->
-      <div class="card">
-        <h3><i class="fas fa-puzzle-piece"></i> Additional Content</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-          <div>
-            <label style="color: #b0caf0;">Feature Box 1 Title</label>
-            <input
+          <h3><i class="fas fa-desktop"></i> Dashboard Preview Image</h3>
+          <p style="color: #8fa3c0; font-size: 0.9rem;">Paste a Cloudinary or any image URL</p>
+          <input type="url" id="imageUrlInput" placeholder="https://res.cloudinary.com/your-dashboard.png">
+          <
