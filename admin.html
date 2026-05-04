@@ -2,7 +2,205 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <meta na<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BHH Admin Panel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0f1a;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #eef5ff;
+      padding: 20px;
+    }
+    .admin-container { max-width: 1100px; margin: 0 auto; }
+    .logo-text {
+      font-family: 'Arial Black', sans-serif;
+      font-size: 2.4rem;
+      background: linear-gradient(180deg, #fff, #b0d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .card {
+      background: linear-gradient(145deg, #0f1a2b, #0a1220);
+      border: 2px solid #253752;
+      border-radius: 24px;
+      padding: 28px;
+      margin-bottom: 28px;
+    }
+    .btn {
+      padding: 13px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 5px;
+    }
+    .btn-primary { background: #2563eb; color: white; }
+    .btn-success { background: #059669; color: white; }
+    .btn-danger { background: #dc2626; color: white; }
+    .btn-outline { background: transparent; border: 2px solid #3f5680; color: #ccddff; }
+    input, textarea {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0 18px;
+      background: #020617;
+      border: 2px solid #1f3150;
+      border-radius: 14px;
+      color: white;
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .subscriber-list { max-height: 400px; overflow-y: auto; background: #030712; padding: 16px; border-radius: 16px; }
+    .preview-thumb { max-width: 100%; border-radius: 16px; margin-top: 12px; border: 2px solid #314b6e; max-height: 150px; }
+    @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <!-- Login -->
+    <div id="loginScreen">
+      <div class="card" style="max-width: 420px; margin: 100px auto; text-align: center;">
+        <div class="logo-text">BHH</div>
+        <h3><i class="fas fa-lock"></i> Admin Access</h3>
+        <input type="password" id="passwordInput" placeholder="Password">
+        <button class="btn btn-primary" onclick="login()" style="width:100%;">🔓 Unlock Panel</button>
+        <p style="margin-top:14px; font-size:0.85rem; color:#5f7392;">Password: admin1234</p>
+      </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="adminDashboard" style="display: none;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap;">
+        <div class="logo-text">BHH <span style="font-size:1rem; color:#7cc9ff;">admin</span></div>
+        <div>
+          <a href="index.html" class="btn btn-outline" target="_blank"><i class="fas fa-external-link-alt"></i> View Site</a>
+          <button class="btn btn-danger" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><i class="fas fa-chart-bar"></i> Stats</h3>
+        <p>Total Subscribers: <strong id="totalSubs" style="color:#60a5fa; font-size:1.5rem;">0</strong></p>
+      </div>
+
+      <div class="card">
+        <h3><i class="fas fa-users"></i> Waitlist</h3>
+        <button class="btn btn-outline" onclick="loadSubscribers()"><i class="fas fa-sync-alt"></i> Refresh</button>
+        <button class="btn btn-outline" onclick="exportCSV()"><i class="fas fa-download"></i> Export CSV</button>
+        <div class="subscriber-list" id="subscriberList">Click Refresh to load</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3><i class="fas fa-image"></i> Hero Logo</h3>
+          <input type="url" id="heroLogoUrl" placeholder="https://example.com/logo.png">
+          <button class="btn btn-primary" onclick="updateLogo()"><i class="fas fa-upload"></i> Update Logo</button>
+          <img id="logoPreview" src="" class="preview-thumb" style="background:#0a0f1a;" alt="No logo">
+        </div>
+
+        <div class="card">
+          <h3><i class="fas fa-desktop"></i> Dashboard Image</h3>
+          <input type="url" id="dashboardImgUrl" placeholder="https://example.com/dashboard.png">
+          <button class="btn btn-primary" onclick="updateDashboardImg()"><i class="fas fa-save"></i> Update Image</button>
+          <img id="dashboardPreview" src="" class="preview-thumb" style="background:#0a0f1a;" alt="No image">
+        </div>
+      </div>
+
+      <div class="card">
+        <h3><i class="fas fa-edit"></i> Hero Text</h3>
+        <label>Headline:</label>
+        <textarea id="heroTitle" rows="2">AI that breaks hackers' hearts <span class="text-light-blue">before they break your site</span></textarea>
+        <label>Subheadline:</label>
+        <textarea id="heroSub" rows="3">We monitor your website for hackers, scan for vulnerabilities weekly, and send you plain-English reports.</textarea>
+        <button class="btn btn-success" onclick="saveText()"><i class="fas fa-check"></i> Save & Update Site</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+    const SUPABASE_URL = "https://ifgalrhiytxjzoqdccvu.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlmZ2FscmhpeXR4anpvcWRjY3Z1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MzE0OTksImV4cCI6MjA5MzQwNzQ5OX0.Ops8Rv_BoecZUV2vAjmIeGcZqdqNFG9nVeIoFU6ePRQ";
+    
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Make functions global
+    window.login = function() {
+      if (document.getElementById('passwordInput').value === 'admin1234') {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('adminDashboard').style.display = 'block';
+        localStorage.setItem('bhh_admin_auth', 'true');
+        loadSubscribers();
+        loadCurrentSettings();
+      } else {
+        alert('Wrong password!');
+      }
+    };
+
+    window.logout = function() {
+      localStorage.removeItem('bhh_admin_auth');
+      document.getElementById('adminDashboard').style.display = 'none';
+      document.getElementById('loginScreen').style.display = 'block';
+    };
+
+    window.loadSubscribers = async function() {
+      const { data, error, count } = await supabase.from('waitlist').select('*', { count: 'exact' }).order('created_at', { ascending: false });
+      document.getElementById('totalSubs').textContent = count || 0;
+      const list = document.getElementById('subscriberList');
+      if (error) {
+        list.innerHTML = '❌ Error: ' + error.message;
+        return;
+      }
+      if (!data || data.length === 0) {
+        list.innerHTML = '<p>No subscribers yet.</p>';
+        return;
+      }
+      list.innerHTML = data.map(s => 
+        `<div style="padding:12px; border-bottom:1px solid #1e2b40;">📧 ${s.email} | ${s.name} ${s.business_type ? '| '+s.business_type : ''} | ${new Date(s.created_at).toLocaleDateString()}</div>`
+      ).join('');
+    };
+
+    window.exportCSV = async function() {
+      const { data } = await supabase.from('waitlist').select('*').order('created_at', { ascending: false });
+      if (!data) return;
+      let csv = 'Name,Email,Business Type,Created At\n';
+      data.forEach(s => { csv += `"${s.name}","${s.email}","${s.business_type||''}","${s.created_at}"\n`; });
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'waitlist.csv'; a.click();
+    };
+
+    window.updateLogo = function() {
+      const url = document.getElementById('heroLogoUrl').value.trim();
+      if (!url) return alert('Please enter a URL');
+      localStorage.setItem('bhh_hero_logo', url);
+      document.getElementById('logoPreview').src = url;
+      alert('✅ Logo updated! Refresh your landing page.');
+    };
+
+    window.updateDashboardImg = function() {
+      const url = document.getElementById('dashboardImgUrl').value.trim();
+      if (!url) return alert('Please enter a URL');
+      localStorage.setItem('bhh_dashboard_image', url);
+      document.getElementById('dashboardPreview').src = url;
+      alert('✅ Dashboard image updated!');
+    };
+
+    window.saveText = function() {
+      localStorage.setItem('bhh_hero_title1', document.getElementById('heroTitle').value);
+      localStorage.setItem('bhh_hero_sub', document.getElementById('heroSub').value);me="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>BHH Admin Panel · Content Manager</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
