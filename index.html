@@ -7,39 +7,17 @@
   <title>BHH · AI-managed cybersecurity (Free)</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: #0b0f1c;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       color: #eef5ff;
       line-height: 1.6;
-      scroll-behavior: smooth;
     }
-
-    .container {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    .gradient-bg {
-      background: radial-gradient(circle at 20% 10%, #13223b 0%, #0a0f1a 90%);
-    }
-
-    h1, h2, h3 {
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-
-    .text-light-blue {
-      color: #7cc9ff;
-    }
-
+    .container { max-width: 1300px; margin: 0 auto; padding: 0 24px; }
+    .gradient-bg { background: radial-gradient(circle at 20% 10%, #13223b 0%, #0a0f1a 90%); }
+    .text-light-blue { color: #7cc9ff; }
+    
     .badge-free {
       background: #0f1a2b;
       border: 1px solid #2e4b6e;
@@ -51,15 +29,13 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      backdrop-filter: blur(4px);
       animation: pulse 2s infinite;
     }
-
     @keyframes pulse {
       0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
       50% { box-shadow: 0 0 0 12px rgba(37, 99, 235, 0); }
     }
-
+    
     .btn {
       padding: 16px 36px;
       border-radius: 40px;
@@ -75,25 +51,14 @@
       border: none;
       color: white;
     }
-
     .btn-primary {
       background: linear-gradient(135deg, #2563eb, #1d4ed8);
       color: white;
       box-shadow: 0 8px 25px rgba(37, 99, 235, 0.35);
     }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.5);
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 0;
-    }
-
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 35px rgba(37, 99, 235, 0.5); }
+    
+    header { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; }
     .logo-text {
       font-family: 'Arial Black', 'Arial Bold', sans-serif;
       font-size: 2.6rem;
@@ -101,40 +66,23 @@
       background: linear-gradient(180deg, #ffffff 0%, #a0cfff 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
       letter-spacing: 2px;
     }
-
-    /* Hero Section with Logo */
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      align-items: center;
-      margin: 40px 0 70px;
-    }
-
-    .hero-logo-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
+    
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin: 40px 0 70px; }
+    
+    .hero-logo-container { display: flex; align-items: center; justify-content: center; }
     .hero-logo {
       max-width: 100%;
       max-height: 400px;
       object-fit: contain;
       filter: drop-shadow(0 0 30px rgba(37, 99, 235, 0.4));
       animation: float 3s ease-in-out infinite;
-      transition: all 0.3s ease;
     }
-
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-20px); }
     }
-
     .hero-logo-placeholder {
       width: 100%;
       max-width: 400px;
@@ -147,57 +95,25 @@
       border: 1px solid #2f3e58;
       box-shadow: 0 25px 50px rgba(0,0,0,0.5);
     }
-
-    .hero-logo-placeholder i {
-      font-size: 8rem;
-      color: #4b8bff;
-      filter: drop-shadow(0 0 20px #1e4b8f);
-    }
-
-    /* 3D Effect Cards */
+    .hero-logo-placeholder i { font-size: 8rem; color: #4b8bff; filter: drop-shadow(0 0 20px #1e4b8f); }
+    
     .card-3d {
       background: linear-gradient(145deg, #111b2e, #0d1525);
       border: 1px solid #253752;
       border-radius: 24px;
       padding: 32px 24px;
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
     }
-
     .card-3d:hover {
       transform: translateY(-8px) scale(1.03);
       box-shadow: 0 20px 50px rgba(37,99,235,0.2), 0 10px 30px rgba(0,0,0,0.5);
       border-color: #4f8cff;
     }
-
-    .card-3d::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 24px;
-      background: linear-gradient(135deg, rgba(37,99,235,0.1) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 24px;
-      margin: 40px 0;
-    }
-
-    .feature-icon {
-      font-size: 2.5rem;
-      color: #5c9eff;
-      margin-bottom: 18px;
-      position: relative;
-      z-index: 1;
-    }
-
+    
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin: 40px 0; }
+    .feature-icon { font-size: 2.5rem; color: #5c9eff; margin-bottom: 18px; }
+    
     .dashboard-preview {
       background: linear-gradient(145deg, #0c1422, #080f1a);
       border-radius: 28px;
@@ -205,21 +121,9 @@
       margin: 50px 0;
       border: 1px solid #2a3850;
       text-align: center;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
     }
-
-    .dashboard-img {
-      max-width: 100%;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-      border: 2px solid #314b6e;
-      transition: transform 0.3s;
-    }
-
-    .dashboard-img:hover {
-      transform: scale(1.02);
-    }
-
+    .dashboard-img { max-width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); border: 2px solid #314b6e; }
+    
     .waitlist-box {
       background: linear-gradient(145deg, #0f1a2b, #0a1220);
       border: 2px solid #314a6b;
@@ -229,8 +133,8 @@
       margin: 0 auto;
       box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
-
-    input, select {
+    
+    input {
       width: 100%;
       padding: 16px 20px;
       margin: 12px 0;
@@ -240,41 +144,16 @@
       color: white;
       font-size: 1rem;
       outline: none;
-      transition: all 0.3s;
     }
-
-    input:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 4px rgba(59,130,246,0.2);
-    }
-
-    .section-title {
-      font-size: 2.2rem;
-      margin: 50px 0 25px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px 0;
-      color: #8a9bb5;
-      border-top: 1px solid #1f2a3c;
-      margin-top: 60px;
-    }
-
+    input:focus { border-color: #3b82f6; box-shadow: 0 0 0 4px rgba(59,130,246,0.2); }
+    
+    .section-title { font-size: 2.2rem; margin: 50px 0 25px; }
+    footer { text-align: center; padding: 40px 0; color: #8a9bb5; border-top: 1px solid #1f2a3c; margin-top: 60px; }
+    
     @media (max-width: 768px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-      .logo-text {
-        font-size: 2rem;
-      }
-      .section-title {
-        font-size: 1.8rem;
-      }
-      .hero-logo-placeholder {
-        max-width: 300px;
-        height: 300px;
-      }
+      .hero-grid { grid-template-columns: 1fr; }
+      .logo-text { font-size: 2rem; }
+      .section-title { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -285,7 +164,6 @@
       <div class="badge-free"><i class="fas fa-shield-alt"></i> FREE for now</div>
     </header>
 
-    <!-- Hero Section with Logo -->
     <div class="hero-grid">
       <div>
         <h1 style="font-size: 3.2rem; margin-bottom: 20px; line-height: 1.2;" id="heroTitle">AI that breaks hackers' hearts <span class="text-light-blue">before they break your site</span></h1>
@@ -294,7 +172,6 @@
         <p style="margin-top: 18px; font-size: 0.95rem; color: #9bb5da;"><i class="fas fa-check-circle"></i> AI-powered · Weekly scans · Human-readable reports</p>
       </div>
       <div class="hero-logo-container">
-        <!-- Logo Image (will show if URL is set, otherwise show placeholder) -->
         <img id="heroLogo" src="" alt="BHH Security Logo" class="hero-logo" style="display: none;" onerror="this.style.display='none'; document.getElementById('logoPlaceholder').style.display='flex';">
         <div id="logoPlaceholder" class="hero-logo-placeholder">
           <i class="fas fa-shield-haltered"></i>
@@ -302,20 +179,17 @@
       </div>
     </div>
 
-    <!-- Dashboard Preview -->
-    <div class="dashboard-preview" id="dashboardPreview">
+    <div class="dashboard-preview">
       <h2 style="margin-bottom: 20px;"><i class="fas fa-desktop text-light-blue"></i> Your future security dashboard</h2>
       <img id="dashboardImage" src="https://placehold.co/800x400/0a111f/7cc9ff?text=BHH+Security+Dashboard+Preview" alt="BHH dashboard preview" class="dashboard-img" style="max-height: 450px; object-fit: contain;">
       <p style="margin-top: 18px; color: #9fb7da; font-size: 1.1rem;"><i class="fas fa-sync-alt"></i> Real-time threat map · vulnerability status · AI reports</p>
     </div>
 
-    <!-- What this is -->
     <div style="margin: 60px 0 40px;">
       <h2 class="section-title"><span class="text-light-blue">AI-Managed Cybersecurity</span> means you stay protected without being a security expert.</h2>
       <p style="margin-top: 16px; max-width: 750px; color: #b8cef0; font-size: 1.1rem;">We combine open-source tools (Wazuh, OpenVAS, pfSense) with an AI layer that monitors, explains threats, and sends alerts in plain language. Built for small businesses, online stores, and founders who want safety without complexity.</p>
     </div>
 
-    <!-- Problem + Solution (3D Cards) -->
     <div style="display: flex; flex-wrap: wrap; gap: 30px; margin: 50px 0;">
       <div style="flex: 1; min-width: 280px;" class="card-3d">
         <h3 style="color: #f87171; font-size: 1.5rem;"><i class="fas fa-exclamation-triangle"></i> The Problem</h3>
@@ -335,7 +209,6 @@
       </div>
     </div>
 
-    <!-- Features grid with 3D effect -->
     <h2 class="section-title">Core security, <span class="text-light-blue">simplified</span></h2>
     <div class="card-grid">
       <div class="card-3d"><i class="fas fa-eye feature-icon"></i><h3>Real-time threat detection</h3><p style="color: #a0bbdb;">Basic alerts when something looks suspicious.</p></div>
@@ -346,32 +219,14 @@
       <div class="card-3d"><i class="fas fa-user-graduate feature-icon"></i><h3>Beginner-friendly insights</h3><p style="color: #a0bbdb;">Explanations you actually understand.</p></div>
     </div>
 
-    <!-- How it works -->
     <h2 class="section-title">How it works</h2>
     <div style="display: flex; flex-wrap: wrap; gap: 25px; justify-content: space-between; text-align: center;">
-      <div style="flex:1; min-width:140px;" class="card-3d">
-        <i class="fas fa-plug" style="font-size:2.5rem; color:#4f8cff;"></i>
-        <h4 style="margin-top: 12px;">1. Connect</h4>
-        <p style="color: #8fa3c0;">Website or small app</p>
-      </div>
-      <div style="flex:1; min-width:140px;" class="card-3d">
-        <i class="fas fa-sync-alt" style="font-size:2.5rem; color:#4f8cff;"></i>
-        <h4 style="margin-top: 12px;">2. Scan & Monitor</h4>
-        <p style="color: #8fa3c0;">Wazuh + OpenVAS</p>
-      </div>
-      <div style="flex:1; min-width:140px;" class="card-3d">
-        <i class="fas fa-microchip" style="font-size:2.5rem; color:#4f8cff;"></i>
-        <h4 style="margin-top: 12px;">3. AI analyzes</h4>
-        <p style="color: #8fa3c0;">Threat meaning</p>
-      </div>
-      <div style="flex:1; min-width:140px;" class="card-3d">
-        <i class="fas fa-envelope-open-text" style="font-size:2.5rem; color:#4f8cff;"></i>
-        <h4 style="margin-top: 12px;">4. Clear reports</h4>
-        <p style="color: #8fa3c0;">Actions delivered</p>
-      </div>
+      <div style="flex:1; min-width:140px;" class="card-3d"><i class="fas fa-plug" style="font-size:2.5rem; color:#4f8cff;"></i><h4 style="margin-top: 12px;">1. Connect</h4><p style="color: #8fa3c0;">Website or small app</p></div>
+      <div style="flex:1; min-width:140px;" class="card-3d"><i class="fas fa-sync-alt" style="font-size:2.5rem; color:#4f8cff;"></i><h4 style="margin-top: 12px;">2. Scan & Monitor</h4><p style="color: #8fa3c0;">Wazuh + OpenVAS</p></div>
+      <div style="flex:1; min-width:140px;" class="card-3d"><i class="fas fa-microchip" style="font-size:2.5rem; color:#4f8cff;"></i><h4 style="margin-top: 12px;">3. AI analyzes</h4><p style="color: #8fa3c0;">Threat meaning</p></div>
+      <div style="flex:1; min-width:140px;" class="card-3d"><i class="fas fa-envelope-open-text" style="font-size:2.5rem; color:#4f8cff;"></i><h4 style="margin-top: 12px;">4. Clear reports</h4><p style="color: #8fa3c0;">Actions delivered</p></div>
     </div>
 
-    <!-- Why choose us -->
     <div style="margin: 60px 0;" class="card-3d">
       <h3 style="font-size: 1.8rem;"><i class="fas fa-hand-holding-heart text-light-blue"></i> Why BHH?</h3>
       <div style="display: flex; flex-wrap: wrap; gap: 25px; margin-top: 25px; font-size: 1.1rem;">
@@ -382,7 +237,6 @@
       </div>
     </div>
 
-    <!-- Waitlist Section -->
     <div id="waitlist" style="text-align: center; margin: 60px 0;">
       <h2 style="font-size: 2.5rem;">Get Early Access</h2>
       <p style="color: #b0caf0; font-size: 1.1rem; margin-bottom: 30px;">Founding users get priority benefits & free extended monitoring.</p>
@@ -413,39 +267,23 @@
     
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     
-    // Load saved content from localStorage
     function loadSavedContent() {
       const savedHeroTitle = localStorage.getItem('bhh_hero_title1');
       const savedHeroSub = localStorage.getItem('bhh_hero_sub');
       const savedDashboardImg = localStorage.getItem('bhh_dashboard_image');
       const savedHeroLogo = localStorage.getItem('bhh_hero_logo');
       
-      // Update hero title
-      if (savedHeroTitle) {
-        document.getElementById('heroTitle').innerHTML = savedHeroTitle;
-      }
+      if (savedHeroTitle) document.getElementById('heroTitle').innerHTML = savedHeroTitle;
+      if (savedHeroSub) document.getElementById('heroSubheadline').textContent = savedHeroSub;
+      if (savedDashboardImg) document.getElementById('dashboardImage').src = savedDashboardImg;
       
-      // Update hero subheadline
-      if (savedHeroSub) {
-        document.getElementById('heroSubheadline').textContent = savedHeroSub;
-      }
-      
-      // Update dashboard preview image
-      if (savedDashboardImg) {
-        document.getElementById('dashboardImage').src = savedDashboardImg;
-      }
-      
-      // Update hero logo
       if (savedHeroLogo) {
-        const logoImg = document.getElementById('heroLogo');
-        const placeholder = document.getElementById('logoPlaceholder');
-        logoImg.src = savedHeroLogo;
-        logoImg.style.display = 'block';
-        placeholder.style.display = 'none';
+        document.getElementById('heroLogo').src = savedHeroLogo;
+        document.getElementById('heroLogo').style.display = 'block';
+        document.getElementById('logoPlaceholder').style.display = 'none';
       }
     }
     
-    // Waitlist form submission
     const form = document.getElementById('waitlistForm');
     const formMsg = document.getElementById('formMessage');
 
@@ -466,19 +304,11 @@
 
       const { data, error } = await supabase
         .from('waitlist')
-        .insert([{ 
-          name: name, 
-          email: email, 
-          business_type: business || null 
-        }]);
+        .insert([{ name, email, business_type: business || null }]);
 
       if (error) {
-        console.error('Supabase error:', error);
-        if (error.code === '23505') {
-          formMsg.textContent = '📧 This email is already on the waitlist!';
-        } else {
-          formMsg.textContent = '❌ Error saving. Please try again.';
-        }
+        console.error('Error:', error);
+        formMsg.textContent = '❌ Error: ' + error.message;
         formMsg.style.color = '#f87171';
       } else {
         formMsg.textContent = '✅ You\'re on the list! Early access coming soon.';
@@ -487,14 +317,9 @@
       }
     });
 
-    // Load saved content on page load
     loadSavedContent();
-    
-    // Listen for storage changes from admin panel
     window.addEventListener('storage', (e) => {
-      if (e.key && e.key.startsWith('bhh_')) {
-        loadSavedContent();
-      }
+      if (e.key && e.key.startsWith('bhh_')) loadSavedContent();
     });
   </script>
 </body>
