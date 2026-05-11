@@ -318,7 +318,7 @@
       listDiv.innerHTML = '<p style="text-align:center; padding:20px;">⏳ Loading subscribers...</p>';
       
       try {
-        const response = await fetch('https://ifgalrhiytxjzoqdccvu.supabase.co/rest/v1/waitlist?select=*&order=created_at.desc', {
+        const response = await fetch('https://bdehgrlzowkuxagvbhpu.supabase.co/rest/v1/waitlist?select=*&order=created_at.desc', {
           headers: {
             'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJkZWhncmx6b3drdXhhZ3ZiaHB1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MzAxMTYsImV4cCI6MjA5MzQwNjExNn0.ROniQ6gSYyOSV9ZLjDq8a1fkBKAJDs8ydLtqrBCg3Rk',
             'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJkZWhncmx6b3drdXhhZ3ZiaHB1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MzAxMTYsImV4cCI6MjA5MzQwNjExNn0.ROniQ6gSYyOSV9ZLjDq8a1fkBKAJDs8ydLtqrBCg3Rk'
@@ -368,7 +368,7 @@
     // EXPORT CSV
     async function exportCSV() {
       try {
-        const response = await fetch('https://ifgalrhiytxjzoqdccvu.supabase.co/rest/v1/waitlist?select=*&order=created_at.desc', {
+        const response = await fetch('https://bdehgrlzowkuxagvbhpu.supabase.co/rest/v1/waitlist?select=*&order=created_at.desc', {
           headers: {
             'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJkZWhncmx6b3drdXhhZ3ZiaHB1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MzAxMTYsImV4cCI6MjA5MzQwNjExNn0.ROniQ6gSYyOSV9ZLjDq8a1fkBKAJDs8ydLtqrBCg3Rk',
             'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJkZWhncmx6b3drdXhhZ3ZiaHB1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MzAxMTYsImV4cCI6MjA5MzQwNjExNn0.ROniQ6gSYyOSV9ZLjDq8a1fkBKAJDs8ydLtqrBCg3Rk'
